@@ -1,1 +1,147 @@
-html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        
+
+        function computerPlay (){
+
+
+            let number = Math.random();
+
+            if (number === 0.33 || number < 0.33  ){
+
+                return "scissor"
+            }
+            else if (number === 0.66 || number < 0.66  ){
+
+                return "rock"
+            }
+            else if (number === 0.99 || number < 0.99  ){
+
+                return "paper"
+            }
+        }
+
+
+        let playerSelection = prompt("Let's play rock, paper, scissor", "Enter either rock, paper or scissor").toLowerCase();
+        let computerSelection = computerPlay();
+
+        let playerScore = 0;
+            
+        let pcScore = 0;
+
+        function oneRound  (playerSelection, computerSelection, pcScore, playerScore){
+      
+           
+
+
+
+
+            switch (true){
+            //combinations player vs pc paper
+
+            //player scissor vs- pc paper = human wins
+            case playerSelection === "scissor" && computerSelection === "paper":
+            return "You win ;"+ " " + `${playerSelection}` + " " + "beats" + `${computerSelection}`;
+             playerScore++;
+            break;
+                //player rock vs pc paper = pc wins
+            case playerSelection === "rock" && computerSelection === "paper":
+            return "You lose ;"+ " " + `${computerSelection}` + " " + "beats" + " " + `${playerSelection}`;
+            pcScore++;
+            break;
+                //player paper vs pc paper = tie
+            case playerSelection === "paper" && computerSelection === "paper":
+            return "It's a tie ;"+ " " + `${computerSelection}` + " = " + `${playerSelection}`;
+            break;
+
+
+
+                //combinations player vs pc rock
+
+                //player scissor vs- pc rock = human wins
+                case playerSelection === "scissor" && computerSelection === "rock":
+                return "You lose ;"+ " " + `${playerSelection}` + " is beaten by " + `${computerSelection}`;
+                pcScore++;
+
+                break;
+                    //player rock vs pc paper = pc wins
+                case playerSelection === "rock" && computerSelection === "rock":
+                return "It's a tie ;" + " " + `${computerSelection}` + " " + "is equal to " + " " + `${playerSelection}`;
+                break;
+                    //player paper vs pc paper = tie
+                case playerSelection === "paper" && computerSelection === "rock":
+                return "You win ;"+ " " + `${computerSelection}` + "is beaten by " + `${playerSelection}`;
+                playerScore++;
+
+                break;
+
+                    //combinations player vs pc scissor
+
+                    //player scissor vs- pc scissor = tie
+                    case playerSelection === "scissor" && computerSelection === "scissor":
+                    return "It's a tie ;"+ "  you chose" + `${playerSelection}` + " and the computer also chose " + `${computerSelection}`;
+                    break;
+                        //player rock vs pc scissor = player wins
+                    case playerSelection === "rock" && computerSelection === "scissor":
+                    return "You win ;"+ " " + `${computerSelection}` + " is beaten by " + `${playerSelection}`;
+                    playerScore++;
+
+                    break;
+                        //player paper vs pc scissor = player loses
+                    case playerSelection === "paper" && computerSelection === "scissor":
+                    return "You lose ;"+ " " + `${computerSelection}` + " beats " + `${playerSelection}`;
+                    pcScore++;
+                    break;
+                    default:
+                        return "Please choose either rock, paper or scissor"
+            }    
+                    
+        }
+
+        function game () {
+
+            
+
+            for (i = 1; i <= 5; i++){
+                
+                let playerSelection = prompt("Let's play rock, paper, scissor", "Enter either rock, paper or scissor").toLowerCase();
+                let computerSelection = computerPlay();
+
+                let playerScore = 0;
+            
+                let pcScore = 0;
+
+
+                console.log(oneRound(playerSelection, computerSelection, pcScore, playerScore));
+                
+                console.log(playerScore);
+                console.log(pcScore);
+
+                if (playerScore > pcScore){
+                    return ` YOu have beaten the computer ${playerScore} to ${pcScore}` 
+                } else {
+                     return `You have been beaten by the computer ${pcScore} to ${playerScore}`
+                    }
+
+                               
+            }
+
+        }
+        game();
+
+
+    </script>
+
+
+
+</body>
+</html>
