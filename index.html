@@ -10,7 +10,7 @@
     <script>
 
         
-
+        // computer choosing one of the three options randomly
         function computerPlay (){
 
 
@@ -38,29 +38,32 @@
             
         let pcScore = 0;
 
-        function oneRound  (playerSelection, computerSelection, pcScore, playerScore){
-      
+
+        let playerSelectionparameter = playerSelection;
+        let computerSelectionparameter = computerSelection;
+
+
+
+        function oneRound  (playerSelectionparameter, computerSelectionparameter, ){
+            
+            computerSelection;
            
-
-
-
-
             switch (true){
             //combinations player vs pc paper
 
             //player scissor vs- pc paper = human wins
-            case playerSelection === "scissor" && computerSelection === "paper":
-            return "You win ;"+ " " + `${playerSelection}` + " " + "beats" + `${computerSelection}`;
+            case playerSelectionparameter === "scissor" && computerSelectionparameter === "paper":
+            console.log("You win ;"+ " " + `${playerSelectionparameter}` + " " + "beats" + `${computerSelectionparameter}`);
              playerScore++;
             break;
                 //player rock vs pc paper = pc wins
-            case playerSelection === "rock" && computerSelection === "paper":
-            return "You lose ;"+ " " + `${computerSelection}` + " " + "beats" + " " + `${playerSelection}`;
+            case playerSelectionparameter === "rock" && computerSelectionparameter === "paper":
+             ("You lose ;"+ " " + `${computerSelectionparameter}` + " " + "beats" + " " + `${playerSelectionparameter}`);
             pcScore++;
             break;
                 //player paper vs pc paper = tie
-            case playerSelection === "paper" && computerSelection === "paper":
-            return "It's a tie ;"+ " " + `${computerSelection}` + " = " + `${playerSelection}`;
+            case playerSelectionparameter === "paper" && computerSelectionparameter === "paper":
+            console.log("It's a tie ;"+ " " + `${computerSelectionparameter}` + " = " + `${playerSelectionparameter}`);
             break;
 
 
@@ -68,18 +71,18 @@
                 //combinations player vs pc rock
 
                 //player scissor vs- pc rock = human wins
-                case playerSelection === "scissor" && computerSelection === "rock":
-                return "You lose ;"+ " " + `${playerSelection}` + " is beaten by " + `${computerSelection}`;
+                case playerSelectionparameter === "scissor" && computerSelectionparameter === "rock":
+                 ("You lose ;"+ " " + `${playerSelectionparameter}` + " is beaten by " + `${computerSelectionparameter}`);
                 pcScore++;
 
                 break;
-                    //player rock vs pc paper = pc wins
-                case playerSelection === "rock" && computerSelection === "rock":
-                return "It's a tie ;" + " " + `${computerSelection}` + " " + "is equal to " + " " + `${playerSelection}`;
+                //player rock vs pc paper = pc wins
+                case playerSelectionparameter === "rock" && computerSelectionparameter === "rock":
+                console.log("It's a tie ;" + " " + `${computerSelectionparameter}` + " " + "is equal to " + " " + `${playerSelectionparameter}`);
                 break;
                     //player paper vs pc paper = tie
-                case playerSelection === "paper" && computerSelection === "rock":
-                return "You win ;"+ " " + `${computerSelection}` + "is beaten by " + `${playerSelection}`;
+                case playerSelectionparameter === "paper" && computerSelectionparameter === "rock":
+                console.log("You win ;"+ " " + `${computerSelectionparameter}` + " is beaten by " + `${playerSelectionparameter}`);
                 playerScore++;
 
                 break;
@@ -87,18 +90,18 @@
                     //combinations player vs pc scissor
 
                     //player scissor vs- pc scissor = tie
-                    case playerSelection === "scissor" && computerSelection === "scissor":
-                    return "It's a tie ;"+ "  you chose" + `${playerSelection}` + " and the computer also chose " + `${computerSelection}`;
+                    case playerSelectionparameter === "scissor" && computerSelectionparameter === "scissor":
+                    console.log("It's a tie ;"+ "  you chose " + `${playerSelectionparameter}` + " and the computer also chose " + `${computerSelectionparameter}`);
                     break;
                         //player rock vs pc scissor = player wins
-                    case playerSelection === "rock" && computerSelection === "scissor":
-                    return "You win ;"+ " " + `${computerSelection}` + " is beaten by " + `${playerSelection}`;
+                    case playerSelectionparameter === "rock" && computerSelectionparameter === "scissor":
+                     console.log("You win ;"+ " " + `${computerSelectionparameter}` + " is beaten by " + `${playerSelectionparameter}`);
                     playerScore++;
 
                     break;
                         //player paper vs pc scissor = player loses
-                    case playerSelection === "paper" && computerSelection === "scissor":
-                    return "You lose ;"+ " " + `${computerSelection}` + " beats " + `${playerSelection}`;
+                    case playerSelectionparameter === "paper" && computerSelectionparameter === "scissor":
+                     console.log("You lose ;"+ " " + `${computerSelectionparameter}` + " beats " + `${playerSelectionparameter}`);
                     pcScore++;
                     break;
                     default:
@@ -107,36 +110,41 @@
                     
         }
 
-        function game () {
+        function game (playerSelection, computerSelection) {
 
             
 
-            for (i = 1; i <= 5; i++){
+            for (i = 0; i < 5; i++){
                 
                 let playerSelection = prompt("Let's play rock, paper, scissor", "Enter either rock, paper or scissor").toLowerCase();
                 let computerSelection = computerPlay();
-
-                let playerScore = 0;
-            
-                let pcScore = 0;
-
-
-                console.log(oneRound(playerSelection, computerSelection, pcScore, playerScore));
                 
+                oneRound(playerSelection, computerSelection);
+                
+                
+
+                //console.log current score
                 console.log(playerScore);
                 console.log(pcScore);
-
-                if (playerScore > pcScore){
-                    return ` YOu have beaten the computer ${playerScore} to ${pcScore}` 
-                } else {
-                     return `You have been beaten by the computer ${pcScore} to ${playerScore}`
-                    }
-
                                
             }
-
+                
+            //console.log final score out of 5 games
+            console.log(`The final score is: ${playerScore} for the human and ${pcScore} for the computer`)
+           
         }
-        game();
+
+       
+        
+
+       game();
+        //game winner
+        if (playerScore > pcScore){
+            console.log("You (the player) has won!")
+        } else if ( playerScore < pcScore){            
+            console.log("You (the player) has lost!")
+        } else {
+            console.log("It's a tie, which is very unlikely to happen")}
 
 
     </script>
