@@ -7,6 +7,36 @@
     <title>Document</title>
 </head>
 <body>
+    <!--labels-->
+    <label>ROCK</label>
+    <label>PAPER</label>
+    <label>SCISSOR</label>
+
+
+    <!--buttons-->
+    <div id = "buttons">
+
+        <button type = "button" id = "rock"></button>
+
+        <button type = "button" id = "paper"></button>
+
+        <button type = "button" id = "scissor"></button>
+
+    </div>
+    
+    <!--results-->
+    <div>
+        <ul>
+            <li>Player Score</li>
+            <li id = "player"></li>
+            <li>Computer Score</li>
+            <li id = "computer"></li>
+            <li id = "scoreText">scoreText</li>
+        </ul>
+    </div>
+
+
+
     <script>
 
         
@@ -31,7 +61,7 @@
         }
 
 
-        let playerSelection = prompt("Let's play rock, paper, scissor", "Enter either rock, paper or scissor").toLowerCase();
+        let playerSelection = alert("Let's play rock, paper, scissor: first to 5");
         let computerSelection = computerPlay();
 
         let playerScore = 0;
@@ -53,17 +83,17 @@
 
             //player scissor vs- pc paper = human wins
             case playerSelectionparameter === "scissor" && computerSelectionparameter === "paper":
-            console.log("You win ;"+ " " + `${playerSelectionparameter}` + " " + "beats" + `${computerSelectionparameter}`);
+            document.querySelector("#scoreText").textContent = "You win ;"+ " " + `${playerSelectionparameter}` + " " + "beats " + `${computerSelectionparameter}`;
              playerScore++;
             break;
                 //player rock vs pc paper = pc wins
             case playerSelectionparameter === "rock" && computerSelectionparameter === "paper":
-             ("You lose ;"+ " " + `${computerSelectionparameter}` + " " + "beats" + " " + `${playerSelectionparameter}`);
+            document.querySelector("#scoreText").textContent = "You lose ;"+ " " + `${computerSelectionparameter}` + " " + "beats" + " " + `${playerSelectionparameter}`;
             pcScore++;
             break;
                 //player paper vs pc paper = tie
             case playerSelectionparameter === "paper" && computerSelectionparameter === "paper":
-            console.log("It's a tie ;"+ " " + `${computerSelectionparameter}` + " = " + `${playerSelectionparameter}`);
+            document.querySelector("#scoreText").textContent = "It's a tie ;"+ " " + `${computerSelectionparameter}` + " = " + `${playerSelectionparameter}`;
             break;
 
 
@@ -72,17 +102,17 @@
 
                 //player scissor vs- pc rock = human wins
                 case playerSelectionparameter === "scissor" && computerSelectionparameter === "rock":
-                 ("You lose ;"+ " " + `${playerSelectionparameter}` + " is beaten by " + `${computerSelectionparameter}`);
+                document.querySelector("#scoreText").textContent = "You lose ;"+ " " + `${playerSelectionparameter}` + " is beaten by " + `${computerSelectionparameter}`;
                 pcScore++;
 
                 break;
                 //player rock vs pc paper = pc wins
                 case playerSelectionparameter === "rock" && computerSelectionparameter === "rock":
-                console.log("It's a tie ;" + " " + `${computerSelectionparameter}` + " " + "is equal to " + " " + `${playerSelectionparameter}`);
+                document.querySelector("#scoreText").textContent = "It's a tie ;" + " " + `${computerSelectionparameter}` + " " + "is equal to " + " " + `${playerSelectionparameter}`;
                 break;
                     //player paper vs pc paper = tie
                 case playerSelectionparameter === "paper" && computerSelectionparameter === "rock":
-                console.log("You win ;"+ " " + `${computerSelectionparameter}` + " is beaten by " + `${playerSelectionparameter}`);
+                document.querySelector("#scoreText").textContent = "You win ;"+ " " + `${computerSelectionparameter}` + " is beaten by " + `${playerSelectionparameter}`;
                 playerScore++;
 
                 break;
@@ -91,51 +121,82 @@
 
                     //player scissor vs- pc scissor = tie
                     case playerSelectionparameter === "scissor" && computerSelectionparameter === "scissor":
-                    console.log("It's a tie ;"+ "  you chose " + `${playerSelectionparameter}` + " and the computer also chose " + `${computerSelectionparameter}`);
+                    document.querySelector("#scoreText").textContent = "It's a tie ;"+ "  you chose " + `${playerSelectionparameter}` + " and the computer also chose " + `${computerSelectionparameter}`;
                     break;
                         //player rock vs pc scissor = player wins
                     case playerSelectionparameter === "rock" && computerSelectionparameter === "scissor":
-                     console.log("You win ;"+ " " + `${computerSelectionparameter}` + " is beaten by " + `${playerSelectionparameter}`);
+                    document.querySelector("#scoreText").textContent = "You win ;"+ " " + `${computerSelectionparameter}` + " is beaten by " + `${playerSelectionparameter}`;
                     playerScore++;
 
                     break;
                         //player paper vs pc scissor = player loses
                     case playerSelectionparameter === "paper" && computerSelectionparameter === "scissor":
-                     console.log("You lose ;"+ " " + `${computerSelectionparameter}` + " beats " + `${playerSelectionparameter}`);
+                    document.querySelector("#scoreText").textContent ="You lose ;"+ " " + `${computerSelectionparameter}` + " beats " + `${playerSelectionparameter}`;
                     pcScore++;
                     break;
                     default:
                         return "Please choose either rock, paper or scissor"
             }    
-                    
-        }
-
-        function game (playerSelection, computerSelection) {
-
+            //returns to #player & #computer their current score
             
-
-            for (i = 0; i < 5; i++){
-                
-                let playerSelection = prompt("Let's play rock, paper, scissor", "Enter either rock, paper or scissor").toLowerCase();
-                let computerSelection = computerPlay();
-                
-                oneRound(playerSelection, computerSelection);
-                
-                
-
-                //console.log current score
-                console.log(playerScore);
-                console.log(pcScore);
-                               
-            }
-                
-            //console.log final score out of 5 games
-            console.log(`The final score is: ${playerScore} for the human and ${pcScore} for the computer`)
-           
-        }
-
        
+            document.getElementById("player").textContent = `${playerScore}`;
+            document.getElementById("computer").textContent = `${pcScore}`;
+
+                //game winner whoever gets to 3 points
+            if (playerScore === 5 ){
+                document.querySelector("#scoreText").textContent = "You (the player) have won this round!";
+                } else if ( pcScore === 5){            
+                document.querySelector("#scoreText").textContent = "You (the player) has lost!";
+            } 
+        }
         
+        //rock
+        let rock = document.querySelector("#rock");
+
+        //addEList with anonymous function with rock as player parameter
+        rock.addEventListener("click", function (){
+
+            oneRound("rock", computerPlay());
+        });
+       
+
+        //paper
+
+        let paper = document.querySelector("#paper");
+
+        paper.addEventListener("click", function (){
+
+        oneRound("paper", computerPlay());
+        });
+
+        //scissor
+
+
+        let scissor = document.querySelector("#scissor");
+
+        scissor.addEventListener("click", function (){
+
+        oneRound("scissor", computerPlay());
+        });
+
+                
+         //console.log/DOM Method final score out of 5 games
+        document.querySelector("#scoreText").textContent =`The final score is: ${playerScore} for the human and ${pcScore} for the computer`;
+           
+        
+        //to style all buttons, we have to loop through all buttons
+        // with .getElementsByTagName
+        let bCss = document.getElementsByTagName("button");
+        
+        for (i = 0; i < bCss.length; i++  ){
+        
+        bCss[i].style.width = "100px";
+        bCss[i].style.height = "50px";
+        bCss[i].style.backgroundColor = "green";
+        }
+        
+<<<<<<< Updated upstream
         // 5 times one round
        game();
         //game winner
@@ -146,6 +207,10 @@
         } else {
             console.log("It's a tie, which is very unlikely to happen")}
 
+=======
+
+     
+>>>>>>> Stashed changes
 
     </script>
 
